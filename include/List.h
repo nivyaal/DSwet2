@@ -69,7 +69,7 @@ void List<T>::remove(const T &val, ListNode<T> *head)
 {
     if (head->next == nullptr)
     {
-        return; // throw value doesnt exist
+        return; // throw value doesn't exist
     }
     if ((head->next)->value == val)
     {

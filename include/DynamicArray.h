@@ -8,7 +8,7 @@ class DynamicArray
 {
 private:
     int size;
-    int intial_size = 8;
+    int initial_size = 8;
     int cnt;
     int growth_factor = 2;
     T *data;
@@ -16,7 +16,7 @@ private:
     void enlarge(const int factor);
 
 public:
-    explicit DynamicArray() : size(array_size), cnt(0), data(new T[intial_size]){};
+    explicit DynamicArray() : size(array_size), cnt(0), data(new T[initial_size]){};
 
     ~DynamicArray()
     {

@@ -9,10 +9,10 @@ template <class T>
 class HashTable
 {
 private:
-    List<Pair<int, T>> *data;
-    int intial_size = 8;
+    int initial_size = 7;
     int size;
     int cnt;
+    List<Pair<int, T>> *data;
     void enlarge();
     void shrink();
     bool isTooBig();
@@ -21,11 +21,35 @@ private:
     int hash(const int key);
 
 public:
+
+    explicit HashTable() :size(initial_size),cnt(0), data(new List<Pair<int,T>>[initial_size]) {};
+
     ~HashTable() { delete[] data; };
     void insert(const int key, const T &value);
     void erase(const int key);
     T *find(const int key);
 };
+
+template< class T>
+bool HashTable<T>::isTooSmall()
+{
+    if (cnt >=initial_size && cnt < size/2)
+    {
+        return true;
+    }
+    return false;
+}
+
+
+template< class T>
+bool HashTable<T>::isTooBig()
+{
+    if (cnt == size)
+    {
+        return true;
+    }
+    return false;
+}
 
 template <class T>
 void HashTable<T>::resize()
@@ -54,7 +78,7 @@ void HashTable<T>::enlarge()
         {
             int key = pair_node->getValue()->first;
             T value = pair_node->getValue()->second;
-            data[hash(pair_node->getValue()->first)].insertStart(Pair<int, T>(key, value));
+            data[hash(key)].insertStart(Pair<int, T>(key, value));
             pair_node = pair_node->getNext();
         }
     }
@@ -90,6 +114,7 @@ void HashTable<T>::insert(const int key, const T &value)
         throw Failure();
     }
     this->data[index].insertStart(Pair<int, T>(key, value));
+    cnt++;
 }
 
 template <class T>
@@ -100,6 +125,7 @@ void HashTable<T>::erase(const int key)
         throw Failure();
     }
     int index = hash(key);
+    cnt--;
     resize();
 }
 

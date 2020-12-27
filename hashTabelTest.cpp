@@ -1,5 +1,5 @@
 #include <iostream>
-#include "HashTable.h"
+#include "include/HashTable.h"
 
 int main()
 {
