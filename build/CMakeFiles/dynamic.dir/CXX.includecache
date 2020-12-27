@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hod/Desktop/projects/wet2DS/dynamic_array.h
+iostream
+-
+
+/home/hod/Desktop/projects/wet2DS/dynamictest.cpp
+dynamic_array.h
+/home/hod/Desktop/projects/wet2DS/dynamic_array.h
+
