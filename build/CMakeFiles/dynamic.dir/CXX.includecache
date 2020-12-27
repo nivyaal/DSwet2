@@ -6,11 +6,29 @@
 
 #IncludeRegexTransform: 
 
-/home/hod/Desktop/projects/wet2DS/dynamic_array.h
+/home/hod/Desktop/projects/wet2DS/DSwet2/HashTable.h
+List.h
+/home/hod/Desktop/projects/wet2DS/DSwet2/List.h
+Pair.h
+/home/hod/Desktop/projects/wet2DS/DSwet2/Pair.h
+exceptions.h
+/home/hod/Desktop/projects/wet2DS/DSwet2/exceptions.h
+
+/home/hod/Desktop/projects/wet2DS/DSwet2/List.h
 iostream
 -
 
-/home/hod/Desktop/projects/wet2DS/dynamictest.cpp
-dynamic_array.h
-/home/hod/Desktop/projects/wet2DS/dynamic_array.h
+/home/hod/Desktop/projects/wet2DS/DSwet2/Pair.h
+iostream
+-
+
+/home/hod/Desktop/projects/wet2DS/DSwet2/exceptions.h
+exception
+-
+
+/home/hod/Desktop/projects/wet2DS/DSwet2/hashTabelTest.cpp
+iostream
+-
+HashTable.h
+/home/hod/Desktop/projects/wet2DS/DSwet2/HashTable.h
 

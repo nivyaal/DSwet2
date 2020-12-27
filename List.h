@@ -9,8 +9,10 @@ private:
 public:
     T value;
     ListNode<T> *next;
-    ListNode() : value(0), next(nullptr){};
+    ListNode() : value(T()), next(nullptr){};
     explicit ListNode(T val) : value(val), next(nullptr){};
+    ListNode<T> *getNext() { return this->next; };
+    T *getValue() { return &(this->value); };
 };
 
 template <class T>
@@ -24,7 +26,7 @@ private:
     void emptyList(ListNode<T> *curr);
 
 public:
-    List() : size(0), head(new ListNode<T>()){head->next = nullptr};
+    List() : size(0), head(new ListNode<T>()) { head->next = nullptr; };
     ~List()
     {
         emptyList(head);
@@ -33,6 +35,7 @@ public:
     void insertStart(const T &val);
     void remove(const T &val);
     T *find(const T &val);
+    ListNode<T> *getHead() { return head; };
 };
 
 template <class T>

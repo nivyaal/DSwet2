@@ -1,37 +1,31 @@
 #ifndef DYNAMICARRAY_H_
 #define DYNAMICARRAY_H_
 #include <iostream>
+#include "exceptions.h"
 
 template <class T>
 class DynamicArray
 {
 private:
     int size;
+    int intial_size = 8;
     int cnt;
+    int growth_factor = 2;
     T *data;
     void resize();
     void enlarge(const int factor);
 
 public:
-    explicit DynamicArray(const int array_size) : size(array_size), cnt(0), data(new T[array_size]){};
-
-    explicit DynamicArray(const int array_size, const T &intial) : size(array_size), cnt(0), data(new T[array_size])
-    {
-        for (int i = 0; i < array_size; i++)
-        {
-            data[i] = intial;
-        }
-    };
+    explicit DynamicArray() : size(array_size), cnt(0), data(new T[intial_size]){};
 
     ~DynamicArray()
     {
         delete[] data;
     };
     int getSize() const { return size; };
-    T &operator[](
-        const int index);
-    void push(const T &value);
+    T &operator[](const int index);
     const T &operator[](const int index) const;
+    void push(const T &value);
 };
 
 template <class T>
@@ -39,7 +33,7 @@ T &DynamicArray<T>::operator[](const int index)
 {
     if (index < 0 || index > cnt || data == nullptr)
     {
-        throw; //
+        throw Failure(); //
     }
     else
     {
@@ -64,29 +58,16 @@ void DynamicArray<T>::push(const T &value)
 {
     if (cnt == size)
     {
-        resize();
+        this->enlarge(growth_factor);
     }
     data[cnt++] = value;
-}
-
-template <class T>
-void DynamicArray<T>::resize()
-{
-    auto old_array = this->data;
-    auto oldsize = size;
-
-    if (cnt >= size)
-    {
-        this->enlarge(2);
-    }
-    return;
 }
 
 template <class T>
 void DynamicArray<T>::enlarge(const int factor)
 {
     auto old_array = this->data;
-    auto oldsize = size;
+    int oldsize = size;
     this->data = new T[factor * size];
     this->size = factor * size;
     for (int i = 0; i < size; i++)

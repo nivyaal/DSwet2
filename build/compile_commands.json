@@ -1,7 +1,7 @@
 [
 {
-  "directory": "/home/hod/Desktop/projects/wet2DS/build",
-  "command": "/usr/bin/x86_64-linux-gnu-g++-7    -g   -o CMakeFiles/dynamic.dir/dynamictest.cpp.o -c /home/hod/Desktop/projects/wet2DS/dynamictest.cpp",
-  "file": "/home/hod/Desktop/projects/wet2DS/dynamictest.cpp"
+  "directory": "/home/hod/Desktop/projects/wet2DS/DSwet2/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7    -g   -o CMakeFiles/dynamic.dir/hashTabelTest.cpp.o -c /home/hod/Desktop/projects/wet2DS/DSwet2/hashTabelTest.cpp",
+  "file": "/home/hod/Desktop/projects/wet2DS/DSwet2/hashTabelTest.cpp"
 }
 ]

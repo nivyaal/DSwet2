@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hod/Desktop/projects/wet2DS
+CMAKE_SOURCE_DIR = /home/hod/Desktop/projects/wet2DS/DSwet2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hod/Desktop/projects/wet2DS/build
+CMAKE_BINARY_DIR = /home/hod/Desktop/projects/wet2DS/DSwet2/build
 
 # Utility rule file for ExperimentalStart.
 
@@ -71,6 +71,6 @@ CMakeFiles/ExperimentalStart.dir/clean:
 .PHONY : CMakeFiles/ExperimentalStart.dir/clean
 
 CMakeFiles/ExperimentalStart.dir/depend:
-	cd /home/hod/Desktop/projects/wet2DS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hod/Desktop/projects/wet2DS /home/hod/Desktop/projects/wet2DS /home/hod/Desktop/projects/wet2DS/build /home/hod/Desktop/projects/wet2DS/build /home/hod/Desktop/projects/wet2DS/build/CMakeFiles/ExperimentalStart.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/hod/Desktop/projects/wet2DS/DSwet2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hod/Desktop/projects/wet2DS/DSwet2 /home/hod/Desktop/projects/wet2DS/DSwet2 /home/hod/Desktop/projects/wet2DS/DSwet2/build /home/hod/Desktop/projects/wet2DS/DSwet2/build /home/hod/Desktop/projects/wet2DS/DSwet2/build/CMakeFiles/ExperimentalStart.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalStart.dir/depend
 

@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/hod/Desktop/projects/wet2DS
-BuildDirectory: /home/hod/Desktop/projects/wet2DS/build
+SourceDirectory: /home/hod/Desktop/projects/wet2DS/DSwet2
+BuildDirectory: /home/hod/Desktop/projects/wet2DS/DSwet2/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -36,7 +36,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/hod/Desktop/projects/wet2DS"
+ConfigureCommand: "/usr/bin/cmake" "/home/hod/Desktop/projects/wet2DS/DSwet2"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 

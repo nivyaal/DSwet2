@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/dynamic.dir/dynamictest.cpp.o"
+  "CMakeFiles/dynamic.dir/hashTabelTest.cpp.o"
   "dynamic.pdb"
   "dynamic"
 )

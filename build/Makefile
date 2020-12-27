@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hod/Desktop/projects/wet2DS
+CMAKE_SOURCE_DIR = /home/hod/Desktop/projects/wet2DS/DSwet2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hod/Desktop/projects/wet2DS/build
+CMAKE_BINARY_DIR = /home/hod/Desktop/projects/wet2DS/DSwet2/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -92,7 +92,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/hod/Desktop/projects/wet2DS/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/hod/Desktop/projects/wet2DS/DSwet2/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -113,9 +113,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hod/Desktop/projects/wet2DS/build/CMakeFiles /home/hod/Desktop/projects/wet2DS/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hod/Desktop/projects/wet2DS/DSwet2/build/CMakeFiles /home/hod/Desktop/projects/wet2DS/DSwet2/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hod/Desktop/projects/wet2DS/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hod/Desktop/projects/wet2DS/DSwet2/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -520,32 +520,32 @@ ExperimentalBuild/fast:
 	$(MAKE) -f CMakeFiles/ExperimentalBuild.dir/build.make CMakeFiles/ExperimentalBuild.dir/build
 .PHONY : ExperimentalBuild/fast
 
-dynamictest.o: dynamictest.cpp.o
+hashTabelTest.o: hashTabelTest.cpp.o
 
-.PHONY : dynamictest.o
+.PHONY : hashTabelTest.o
 
 # target to build an object file
-dynamictest.cpp.o:
-	$(MAKE) -f CMakeFiles/dynamic.dir/build.make CMakeFiles/dynamic.dir/dynamictest.cpp.o
-.PHONY : dynamictest.cpp.o
+hashTabelTest.cpp.o:
+	$(MAKE) -f CMakeFiles/dynamic.dir/build.make CMakeFiles/dynamic.dir/hashTabelTest.cpp.o
+.PHONY : hashTabelTest.cpp.o
 
-dynamictest.i: dynamictest.cpp.i
+hashTabelTest.i: hashTabelTest.cpp.i
 
-.PHONY : dynamictest.i
+.PHONY : hashTabelTest.i
 
 # target to preprocess a source file
-dynamictest.cpp.i:
-	$(MAKE) -f CMakeFiles/dynamic.dir/build.make CMakeFiles/dynamic.dir/dynamictest.cpp.i
-.PHONY : dynamictest.cpp.i
+hashTabelTest.cpp.i:
+	$(MAKE) -f CMakeFiles/dynamic.dir/build.make CMakeFiles/dynamic.dir/hashTabelTest.cpp.i
+.PHONY : hashTabelTest.cpp.i
 
-dynamictest.s: dynamictest.cpp.s
+hashTabelTest.s: hashTabelTest.cpp.s
 
-.PHONY : dynamictest.s
+.PHONY : hashTabelTest.s
 
 # target to generate assembly for a file
-dynamictest.cpp.s:
-	$(MAKE) -f CMakeFiles/dynamic.dir/build.make CMakeFiles/dynamic.dir/dynamictest.cpp.s
-.PHONY : dynamictest.cpp.s
+hashTabelTest.cpp.s:
+	$(MAKE) -f CMakeFiles/dynamic.dir/build.make CMakeFiles/dynamic.dir/hashTabelTest.cpp.s
+.PHONY : hashTabelTest.cpp.s
 
 # Help Target
 help:
@@ -587,9 +587,9 @@ help:
 	@echo "... ContinuousTest"
 	@echo "... ContinuousUpdate"
 	@echo "... ExperimentalBuild"
-	@echo "... dynamictest.o"
-	@echo "... dynamictest.i"
-	@echo "... dynamictest.s"
+	@echo "... hashTabelTest.o"
+	@echo "... hashTabelTest.i"
+	@echo "... hashTabelTest.s"
 .PHONY : help
 
 
