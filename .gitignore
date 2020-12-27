@@ -5,3 +5,7 @@
 #ignore bin directory
 
 /bin
+
+#ignore build directory
+
+/build
