@@ -35,7 +35,7 @@ public:
     void insertStart(const T &val);
     void remove(const T &val);
     T *find(const T &val);
-    ListNode<T> *getHead() { return head; };
+    ListNode<T> *getHead() { return head->next; };
 };
 
 template <class T>

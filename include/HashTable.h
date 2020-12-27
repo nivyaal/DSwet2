@@ -9,6 +9,7 @@ template <class T>
 class HashTable
 {
 private:
+    int resize_factor=2;
     int initial_size = 7;
     int size;
     int cnt;
@@ -18,7 +19,7 @@ private:
     bool isTooBig();
     bool isTooSmall();
     void resize();
-    int hash(const int key);
+    int hash(const int key, const int hash_factor) const;
 
 public:
 
@@ -67,48 +68,52 @@ void HashTable<T>::resize()
 template <class T>
 void HashTable<T>::enlarge()
 {
-    auto old_array = data;
-    int old_size = size;
-    data = new List<Pair<int, T>>[size * 2];
-    size = size * 2;
-    for (int i = 0; i < old_size; i++)
+    int tmp_size = size * resize_factor;
+    List<Pair<int, T>>* tmp_data = new List<Pair<int, T>>[tmp_size];
+    for (int i = 0; i < this->size; i++)
     {
-        ListNode<Pair<int, T>> *pair_node = old_array[i].getHead();
+        ListNode<Pair<int, T>> *pair_node = data[i].getHead();
         while (pair_node)
         {
             int key = pair_node->getValue()->first;
             T value = pair_node->getValue()->second;
-            data[hash(key)].insertStart(Pair<int, T>(key, value));
+            int index =hash(key, tmp_size); 
+            tmp_data[index].insertStart(Pair<int, T>(key, value));
             pair_node = pair_node->getNext();
         }
     }
+    delete[] data;
+    data = tmp_data;
+    size= tmp_size;
 }
 
 template <class T>
 void HashTable<T>::shrink()
 {
-    auto old_array = data;
-    int old_size = size;
-    data = new List<Pair<int, T>>[size / 2];
-    size = size / 2;
-    for (int i = 0; i < old_size; i++)
+    int tmp_size = size /resize_factor ;
+    List<Pair<int, T>>* tmp_data = new List<Pair<int, T>>[tmp_size];
+    for (int i = 0; i < this->size; i++)
     {
-        ListNode<Pair<int, T>> *pair_node = old_array[i].getHead();
+        ListNode<Pair<int, T>> *pair_node = data[i].getHead();
         while (pair_node)
         {
             int key = pair_node->getValue()->first;
             T value = pair_node->getValue()->second;
-            data[hash(pair_node->getValue()->first)].insertStart(Pair<int, T>(key, value));
+            int index =hash(key, tmp_size); 
+            tmp_data[index].insertStart(Pair<int, T>(key, value));
             pair_node = pair_node->getNext();
         }
     }
+    delete[] data;
+    data = tmp_data;
+    size= tmp_size;
 }
 
 template <class T>
 void HashTable<T>::insert(const int key, const T &value)
 {
     resize();
-    int index = hash(key);
+    int index = hash(key, this->size);
     if (this->find(key) != nullptr)
     {
         throw Failure();
@@ -124,7 +129,8 @@ void HashTable<T>::erase(const int key)
     {
         throw Failure();
     }
-    int index = hash(key);
+    int index = hash(key, this->size);
+    data[index].remove(Pair<int,T>(key,T()));
     cnt--;
     resize();
 }
@@ -132,7 +138,7 @@ void HashTable<T>::erase(const int key)
 template <class T>
 T *HashTable<T>::find(const int key)
 {
-    Pair<int, T> *tmp = data[hash(key)].find(Pair<int, T>(key, T()));
+    Pair<int, T> *tmp = data[hash(key, this->size)].find(Pair<int, T>(key, T()));
     if (tmp == nullptr)
     {
         return nullptr;
@@ -141,9 +147,9 @@ T *HashTable<T>::find(const int key)
 }
 
 template <class T>
-int HashTable<T>::hash(const int key)
+int HashTable<T>::hash(const int key ,const int hash_factor) const
 {
-    return key % this->size;
+    return key % hash_factor;
 }
 
 #endif
