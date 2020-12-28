@@ -23,7 +23,7 @@ void  CoursesTable::removeCourse(const int course_id)
     courses.erase(course_id);
 }
 
-void  CoursesTable::addClass(const int course_id)
+int CoursesTable::addClass(const int course_id)
 {
     Triplet<int,int,std::shared_ptr<DynamicArray<Pair<int,int>>>>* course_info  = courses.find(course_id);
     if (course_info == nullptr)
@@ -31,6 +31,7 @@ void  CoursesTable::addClass(const int course_id)
         throw Failure();
     }
     course_info->third->push(Pair<int,int>(0,0));
+    return course_info->second++;
 }
 
 void  CoursesTable::watchClass(const int course_id,const int class_num,const int time)
@@ -49,11 +50,17 @@ int  CoursesTable::getTimeOfClass(const int course_id,const int class_num)
     {
         throw Failure();
     }
-    if (course_info->second <= class_num)
+    int num_of_class = course_info->second;
+    if ( num_of_class <= class_num)
     {
         throw InvalidInput();
     }
     std::shared_ptr<DynamicArray<Pair<int,int>>> classes_table = course_info->third;
     int time_viewed = (*classes_table)[class_num].second;
     return time_viewed;
+}
+
+Triplet<int, int, std::shared_ptr<DynamicArray<Pair<int,int>>>>* CoursesTable::getCourseInfo(const int courseID)
+{
+    return courses.find(courseID);
 }

@@ -7,8 +7,8 @@ template <class T>
 class DynamicArray
 {
 private:
-    int size;
     int initial_size = 8;
+    int size;
     int cnt;
     int growth_factor = 2;
     T *data;

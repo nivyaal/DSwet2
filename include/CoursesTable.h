@@ -16,10 +16,10 @@ class CoursesTable{
     public:
     void addCourse( int course_id);
     void removeCourse(const int course_id);
-    void addClass(const int course_id);
+    int addClass(const int course_id);
     void watchClass(const int course_id,const int class_num,const int time);
     int getTimeOfClass(const int course_id,const int class_num) ;
-
+    Triplet<int, int, std::shared_ptr<DynamicArray<Pair<int,int>>>>* getCourseInfo(const int courseID); 
 };
 
 #endif 
