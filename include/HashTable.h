@@ -10,7 +10,7 @@ class HashTable
 {
 private:
     int resize_factor=2;
-    int initial_size = 7;
+    int initial_size = 8;
     int size;
     int cnt;
     List<Pair<int, T>> *data;

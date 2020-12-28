@@ -16,7 +16,7 @@ private:
     void enlarge(const int factor);
 
 public:
-    explicit DynamicArray() : size(array_size), cnt(0), data(new T[initial_size]){};
+    explicit DynamicArray() : size(initial_size), cnt(0), data(new T[initial_size]){};
 
     ~DynamicArray()
     {
@@ -67,10 +67,10 @@ template <class T>
 void DynamicArray<T>::enlarge(const int factor)
 {
     auto old_array = this->data;
-    int oldsize = size;
+    int old_size = size;
     this->data = new T[factor * size];
     this->size = factor * size;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < old_size; i++)
     {
         data[i] = old_array[i];
     }

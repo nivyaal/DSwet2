@@ -4,7 +4,7 @@ project(dynamic VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(dynamic hashTabelTest.cpp)
+add_executable(CourseTable mainTest.cpp CoursesTable.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
