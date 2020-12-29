@@ -64,10 +64,6 @@ StatusType GetIthWatchedClass(void *DS, int i, int *courseID, int *classID)
 
 void Quit(void **DS)
 {
-    if (*DS == nullptr)
-    {
-        return;
-    }
     auto CourseManager = static_cast<CoursesManager *>(*DS);
     delete CourseManager;
     *DS = nullptr;

@@ -17,7 +17,7 @@ public:
     Node *right;
     Node *left;
     Node() : key(U()), value(T()), parent(nullptr), left(nullptr), right(nullptr), rank(1), height(0), bf(0){};
-    explicit Node(const U &key, const T &val) : key(key), value(val), parent(nullptr), left(nullptr), rank(1), right(nullptr), height(0), bf(0){};
+    explicit Node(const U &key, const T &val) : key(key), value(val), bf(0), height(0), rank(1), parent(nullptr), right(nullptr), left(nullptr){};
 };
 
 template <class U, class T>
@@ -37,7 +37,7 @@ private:
     Node<U, T> *rotateRR(Node<U, T> *r);
     Node<U, T> *rotateLL(Node<U, T> *r);
     Node<U, T> *balance(Node<U, T> *r);
-    int updateBf(Node<U, T> *r);
+    void updateBf(Node<U, T> *r);
     static int getBf(Node<U, T> *v);
     void updateRank(Node<U, T> *r);
     int getRank(const U &key);
@@ -310,7 +310,7 @@ Node<U, T> *AVLtree<U, T>::rotateLL(Node<U, T> *r)
 }
 
 template <class U, class T>
-int AVLtree<U, T>::updateBf(Node<U, T> *r)
+void AVLtree<U, T>::updateBf(Node<U, T> *r)
 {
     int right_height = 0, left_height = 0;
     if (r->right != nullptr)

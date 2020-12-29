@@ -1,0 +1,17 @@
+#!/bin/bash
+
+for i in {1..100}
+do
+	./generator>test$i.cpp
+	 g++ *.cpp -o CoursesManagerApp
+	./CoursesManagerApp>assertionout.txt
+	if [ -s assertionout.txt ]
+	then
+		echo "assertion failure"
+		exit
+	fi
+	echo "Test number $i"
+	rm test$i.cpp
+done
+
+

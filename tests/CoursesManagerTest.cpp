@@ -1,4 +1,4 @@
-#include "include/CoursesManager.h"
+#include "../include/CoursesManager.h"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -7,12 +7,12 @@
 #include <fstream>
 #include <time.h>
 #include <algorithm>
-#include "include/SpecialNodes.h"
+#include "../include/SpecialNodes.h"
 
-#define TEST_ADD_REMOVE_PARMATER 3
-#define TEST_ADDCLASS_PARMATER 1
-#define TEST_CHECK_TIME 1
-#define POLL 10   // 0-POLL is the range of courseIDs
+#define TEST_ADD_REMOVE_PARMATER 50
+#define TEST_ADDCLASS_PARMATER 50
+#define TEST_CHECK_TIME 50
+#define POLL 20   // 0-POLL is the range of courseIDs
 int cnt = 0;      // Counter for each DS
 int line_cnt = 0; // Counter for the printed lines in test.cpp
 
@@ -279,14 +279,12 @@ void CheckAddClass()
 {
     map<int, int> M;
     int num_of_inserts = 5;
-
     writeEmptyInit();
-    std::cout << "//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@VALID INSERTS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-
     //VALID INSERTS CASE
-    for (int i = 0; i < TEST_ADDCLASS_PARMATER; i++)
+    std::cout << "//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@VALID INSERTS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
+    for (int i = 0; i < TEST_ADDCLASS_PARMATER / 7; i++)
     {
-
+        
         for (int i = 0; i < num_of_inserts; i++)
         {
             int courseID = getRandomCourseNum();
@@ -325,10 +323,9 @@ void CheckAddClass()
         writeRemove(SUC, deleted_course2);
         M.erase(deleted_course2);
     }
-
-    for (int i = 0; i < TEST_ADDCLASS_PARMATER; i++)
+    for (int i = 0; i < TEST_ADDCLASS_PARMATER /7; i++)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < num_of_inserts ; i++)
         {
             int courseID = getRandomCourseNum();
             if (courseID == deleted_course1 || courseID == deleted_course2)
@@ -342,7 +339,7 @@ void CheckAddClass()
             }
         }
 
-        for (int i = 0; i < num_of_inserts; i++)
+        for (int i = 0; i < (num_of_inserts-1)*2; i++)
         {
             if (ChanceOfHalf())
             {
@@ -359,21 +356,28 @@ void CheckAddClass()
                 {
                     continue;
                 }
-
                 if (ChanceOfHalf())
                 {
-                    writeAddClass(FAIL, deleted_course1, 5);
+                    if (M.find(deleted_course1) == M.end())
+                    {
+                        writeAddClass(FAIL, deleted_course1, 5);
+                    }
                 }
                 else
                 {
-                    writeAddClass(FAIL, deleted_course2, 5);
+                    if (M.find(deleted_course2) == M.end())
+                    {
+                        writeAddClass(FAIL, deleted_course2, 5);
+                    }
                 }
             }
         }
+    }
         std::cout << "//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@RANDOM INSERTS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
                   << std::endl;
         //RANDOM INSERTIONS
-        for (int i = 0; i < TEST_ADDCLASS_PARMATER; i++)
+
+        for (int i=0;i<TEST_ADDCLASS_PARMATER/2;i++)
         {
             int courseID = getRandomCourseNum();
             if (ChanceOfThird()) // 30% for remove function
@@ -400,30 +404,34 @@ void CheckAddClass()
                     M[courseID] = 0;
                 }
             }
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 5; j++)
             {
                 courseID = getRandomCourseNum();
-                if (M.find(courseID) == M.end())
+                if (M.find(courseID) == M.end()) // in case the course doesnt exists;
                 {
                     if (ChanceOfHalf() * ChanceOfHalf())
                     {
                         writeAddClass(INVALID, -courseID, 5);
                     }
-                    writeAddClass(FAIL, courseID, 5);
+                    else
+                    {
+                        std::cout << "//this one screws me3" << std::endl;
+                        writeAddClass(FAIL, courseID, 5);
+                    }
                 }
-                else
+                else //in case the course exists
                 {
                     writeAddClass(SUC, courseID, M[courseID]++);
                 }
             }
         }
-        std::cout << "/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-        std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-        std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-        std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-        std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-        std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/" << std::endl;
-    }
+    
+    std::cout << "/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
+    std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
+    std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
+    std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
+    std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
+    std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END OF AddClass Test @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/" << std::endl;
 }
 
 void checkTime()
@@ -432,11 +440,11 @@ void checkTime()
     std::cout << "//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@VALID INSERTS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
     writeEmptyInit();
     map<int, map<int, int>> M;
-    int num_of_inserts = 5;
+    int num_of_inserts = 10;
     int num_of_removes = 2;
-    int MEGA_LOOP = 2;
+    int MEGA_LOOP = 5;
 
-    for (int i = 0; i < TEST_CHECK_TIME; i++)
+    for (int i = 0; i < TEST_CHECK_TIME/20; i++)
     {
         //inserting course/removing courses
         for (int i = 0; i < num_of_inserts; i++)
@@ -482,6 +490,7 @@ void checkTime()
                 int classID = getRandomKey(M[courseID]);
                 int time = rand() % 10 + 1;
                 M[courseID][classID] += time;
+                std::cout << "//this one screws me 1" << std::endl;
                 writeWatchClass(SUC, courseID, classID, time, M[courseID][classID]);
             }
         }
@@ -490,15 +499,27 @@ void checkTime()
     std::cout << "//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@INVALID INSERTS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
               << std::endl;
     //INVALID INSERTIONS
+for (int i = 0; i < TEST_CHECK_TIME/80; i++)
+{
     if (M.size() != 0)
     {
 
         int real_course = getRandomKey(M);
         int fake_course = rand() % POLL + 1;
+        int x=0;
         while (M.find(fake_course) != M.end())
         {
+            if (x==100)
+            {
+                break;
+            }
             fake_course = rand() % POLL + 1;
+            x++;
         }
+        if (x==100)
+            {
+                continue;
+            }
         writeWatchClass(INVALID, real_course, -5, 5, 5);
         writeWatchClass(INVALID, real_course, 5, -5, 5);
         writeWatchClass(INVALID, real_course, -5, -5, 5);
@@ -508,7 +529,7 @@ void checkTime()
         writeWatchClass(FAIL, fake_course, 5, 5, 5);
     }
     //inserting course/removing courses
-    for (int i = 0; i < num_of_inserts; i++)
+    for (int i = 0; i < num_of_inserts*3; i++)
     {
         int courseID = getRandomCourseNum();
         if (ChanceOfThird())
@@ -530,7 +551,7 @@ void checkTime()
         }
     }
     //inserting class
-    for (int i = 0; i < num_of_inserts; i++)
+    for (int i = 0; i < num_of_inserts*3; i++)
     {
         if (M.size() == 0)
         {
@@ -541,14 +562,24 @@ void checkTime()
         M[courseID][M[courseID].size()] = 0;
     }
     //inserting invalid watchtime values
-    for (int i = 0; i < num_of_inserts; i++)
+    for (int i = 0; i < num_of_inserts*3; i++)
     {
         if (ChanceOfHalf()) // course doesnt exist
         {
             int courseID = rand() % POLL + 1;
+            int x=0;
             while (M.find(courseID) != M.end())
             {
+                if (x==100)
+                {
+                    break;
+                }
+                x++;
                 courseID = rand() % POLL + 1;
+            }
+            if (x==100)
+            {
+                continue;
             }
             writeWatchClass(FAIL, courseID, 5, 5, 5);
         }
@@ -562,9 +593,10 @@ void checkTime()
             writeWatchClass(INVALID, courseID, M[courseID].size() + 5, 5, 5);
         }
     }
+}
     std::cout << "//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@GETITH INSERTS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
               << std::endl;
-    for (int i = 0; i < num_of_inserts; i++)
+    for (int i = 0; i < TEST_CHECK_TIME/2; i++)
     {
         if (M.size() == 0)
         {
@@ -572,10 +604,20 @@ void checkTime()
         }
         int real_course = getRandomKey(M);
         int fake_course = rand() % POLL + 1;
+        int x=0;
         while (M.find(fake_course) != M.end())
         {
+            if (x==100)
+            {
+                break;
+            }
+            x++;
             fake_course = rand() % POLL + 1;
         }
+        if (x==100)
+            {
+                continue;
+            }
         if (ChanceOfThird()) //ADD OR REMOVE
         {
             if (ChanceOfHalf()) //good operation
@@ -612,9 +654,9 @@ void checkTime()
                     continue;
                 }
                 int class_num = rand() % M[real_course].size();
-                int time = rand() % 20;
+                int time = rand() % 20 + 1;
                 M[real_course][class_num] += time;
-                writeWatchClass(SUC, real_course, class_num, 5, M[real_course][class_num]);
+                writeWatchClass(SUC, real_course, class_num, time, M[real_course][class_num]);
             }
             else // bad operation
             {
@@ -644,7 +686,7 @@ void checkTime()
         }
         else // good ith operation
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 9; i++)
             {
                 if (myvector.size() == 0)
                 {

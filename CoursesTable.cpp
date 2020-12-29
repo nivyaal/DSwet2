@@ -49,8 +49,8 @@ int CoursesTable::getTimeOfClass(const int course_id, const int class_num)
     {
         throw Failure();
     }
-    int num_of_class = course_info->second;
-    if (num_of_class <= class_num)
+    int biggest_class = course_info->second;
+    if (biggest_class <= class_num)
     {
         throw InvalidInput();
     }
