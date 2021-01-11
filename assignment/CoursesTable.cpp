@@ -1,6 +1,6 @@
-#include "include/CoursesTable.h"
+#include "CoursesTable.h"
 #include <memory>
-#include "include/Triplet.h"
+#include "Triplet.h"
 
 void CoursesTable::addCourse(int course_id)
 {

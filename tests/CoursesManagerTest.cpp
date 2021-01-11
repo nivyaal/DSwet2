@@ -9,9 +9,9 @@
 #include <algorithm>
 #include "../include/SpecialNodes.h"
 
-#define TEST_ADD_REMOVE_PARMATER 50
-#define TEST_ADDCLASS_PARMATER 50
-#define TEST_CHECK_TIME 50
+#define TEST_ADD_REMOVE_PARMATER 200
+#define TEST_ADDCLASS_PARMATER 200
+#define TEST_CHECK_TIME 200
 #define POLL 20   // 0-POLL is the range of courseIDs
 int cnt = 0;      // Counter for each DS
 int line_cnt = 0; // Counter for the printed lines in test.cpp

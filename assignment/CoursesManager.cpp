@@ -1,6 +1,6 @@
 #include <iostream>
-#include "include/library2.h"
-#include "include/CoursesManager.h"
+#include "library2.h"
+#include "CoursesManager.h"
 
 StatusType CoursesManager::addCourse(const int courseID)
 {

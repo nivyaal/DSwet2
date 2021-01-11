@@ -1,5 +1,5 @@
 #include <iostream>
-#include "include/SortedTree.h"
+#include "SortedTree.h"
 
 void SortedTree::removeClass(int course_id, int class_num, int time)
 {

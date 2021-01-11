@@ -1,4 +1,4 @@
-#include "include/SpecialNodes.h"
+#include "SpecialNodes.h"
 
 bool TripletKey::operator>( const TripletKey y) const
 {
