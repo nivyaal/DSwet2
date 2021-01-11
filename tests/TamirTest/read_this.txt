@@ -1,0 +1,6 @@
+run "python3.6 BoomSystem_Test_Creator.py <length_of_test> <num_of_tests>"
+run ./auto_tester.sh
+
+##### remember the change mode to the files !!!
+
+chmod 750 <file_name>

@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "include/library2.h"
+#include "library2.h"
 
 #ifdef __cplusplus
 extern "C" {
